@@ -1,0 +1,203 @@
+#!/bin/bash
+
+clear
+while [ 'Exit' != op ]; do
+clear;
+op=$(zenity --list --text="Loteria Electronica" --width 320 --height 280 --radiolist --column="Escoge" --column="Opciones" TRUE "Pega 3" FALSE "Pega 4" FALSE "Power Ball" FALSE "Loto" FALSE "Revancha" FALSE "Ver Log Files" FALSE "Exit")
+case $op in
+
+    "Pega 3")
+   	 sec=$(zenity --list --text="Menu" --width 220 --height 200 --radiolist --column="Escoge" --column="Opciones" TRUE "Escoger Numeros" FALSE "Automatica" )
+   	 rand=$(awk 'BEGIN {for(i=1;i<=1;i++) print int(10*rand()) int(10*rand()) int(10*rand()) }')
+
+   	 if [ "$sec" == "Escoger Numeros" ] ; then
+   	 for((i=0;i<=2;i++)) ; do
+   	 bag1[$i]=$(zenity --scale --text "Escoge un numero" --min-value=1 --max-value=9 --value=1)
+   	 done
+   	 zenity --info --text "Numeros escogidos: ${bag1[*]} \n Numeros ganadores: $rand" --width 100 --height 100
+
+
+   	 if [ "${bag1[*]}" == "$rand" ] ; then
+   	 zenity --info --text "Congratulations!" --width --height 100
+   	 fi
+   	 
+   	 if [ "${bag1[*]}" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 if [ "$sec" == "Automatica" ] ; then
+   	 num=$(awk 'BEGIN { $rand() ; for(i=1;i<=1;i++) print int(10*rand()) int(10*rand()) int(10*rand()) }')
+   	 zenity --info --text "Numeros entrados: $num \nNumeros ganadores: $rand " --width 100 --height 100
+
+   	 if [ "$num" == "$rand" ] ; then
+   	 zenity --info --text "Felicidades!" --width 100 --height 100
+   	 fi
+   	 if [ "$num" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 used1=$(($used1 + 1 | bc))
+   	 ;;
+
+
+    "Pega 4")
+   	 sec=$(zenity --list --text="Menu" --width 220 --height 200 --radiolist --column="Escoge" --column="Opciones" TRUE "Escoger Numeros" FALSE "Automatica" )
+   	 rand=$(awk 'BEGIN {for(i=1;i<=1;i++) print int(10*rand()) int(10*rand()) int(10*rand()) int(10*rand()) }')
+
+   	 if [ "$sec" == "Escoger Numeros" ] ; then
+   	 for((i=0;i<=3;i++)) ; do
+   	 bag2[$i]=$(zenity --scale --text "Escoge un numero" --min-value=1 --max-value=9 --value=1)
+   	 done
+   	 zenity --info --text "Numeros escogidos: ${bag2[*]} \n Numeros ganadores: $rand" --width 100 --height 100
+
+
+   	 if [ "${bag2[*]}" == "$rand" ] ; then
+   	 zenity --info --text "Congratulations!" --width --height 100
+   	 fi
+   	 
+   	 if [ "${bag2[*]}" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 if [ "$sec" == "Automatica" ] ; then
+   	 num=$(awk 'BEGIN { $rand() ; for(i=1;i<=1;i++) print int(10*rand()) int(10*rand()) int(10*rand()) int(10*rand()) }')
+   	 zenity --info --text "Numeros entrados: $num \nNumeros ganadores: $rand " --width 100 --height 100
+
+   	 if [ "$num" == "$rand" ] ; then
+   	 zenity --info --text "Felicidades!" --width 100 --height 100
+   	 fi
+   	 if [ "$num" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 used2=$(($used2 + 1 | bc))
+   	 ;;
+
+    "Power Ball")
+   	 sec=$(zenity --list --text="Menu" --width 220 --height 200 --radiolist --column="Escoge" --column="Opciones" TRUE "Escoger Numeros" FALSE "Automatica" )
+   	 rand=$(awk 'BEGIN {for(i=1;i<=1;i++) print int(70*rand()) int(70*rand())  int(70*rand())  int(70*rand())  int(70*rand())  int(27*rand())}')
+
+   	 if [ "$sec" == "Escoger Numeros" ] ; then
+   	 for((i=0;i<=4;i++)) ; do
+   	 bag3[$i]=$(zenity --scale --text "Escoge un numero" --min-value=1 --max-value=69 --value=1)
+   	 done
+   	 bag3[${#bag3[@]}]=$(zenity --scale --text "Escoge numero para bola roja" --min-value=1 --max-value=26 --value=1)
+   	 zenity --info --text "Numeros escogidos: ${bag3[*]} \n Numeros ganadores: $rand" --width 100 --height 100
+
+
+   	 if [ "${bag3[*]}" == "$rand" ] ; then
+   	 zenity --info --text "Congratulations!" --width --height 100
+   	 fi
+   	 
+   	 if [ "${bag3[*]}" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 if [ "$sec" == "Automatica" ] ; then
+   	 num=$(awk 'BEGIN { $rand() ; for(i=1;i<=1;i++) print int(70*rand()) int(70*rand()) int(70*rand()) int(70*rand()) int(70*rand()) int(27*rand()) }')
+   	 zenity --info --text "Numeros entrados: $num \nNumeros ganadores: $rand " --width 100 --height 100
+
+   	 if [ "$num" == "$rand" ] ; then
+   	 zenity --info --text "Felicidades!" --width 100 --height 100
+   	 fi
+   	 if [ "$num" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 used3=$(($used3 + 1 | bc))
+   	 ;;
+   	 
+    "Loto")
+   	 sec=$(zenity --list --text="Menu" --width 220 --height 200 --radiolist --column="Escoge" --column="Opciones" TRUE "Escoger Numeros" FALSE "Automatica" )
+   	 rand=$(awk 'BEGIN {for(i=1;i<=1;i++) print int(36*rand()) int(36*rand())  int(36*rand())  int(36*rand())  int(36*rand())  int(11*rand())}')
+
+   	 if [ "$sec" == "Escoger Numeros" ] ; then
+   	 for((i=0;i<=4;i++)) ; do
+   	 bag4[$i]=$(zenity --scale --text "Escoge un numero" --min-value=1 --max-value=35 --value=1)
+   	 done
+   	 bag4[${#bag4[@]}]=$(zenity --scale --text "Escoge numero para bola roja" --min-value=1 --max-value=10 --value=1)
+   	 zenity --info --text "Numeros escogidos: ${bag4[*]} \n Numeros ganadores: $rand" --width 100 --height 100
+
+
+   	 if [ "${bag4[*]}" == "$rand" ] ; then
+   	 zenity --info --text "Congratulations!" --width --height 100
+   	 fi
+   	 
+   	 if [ "${bag4[*]}" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 if [ "$sec" == "Automatica" ] ; then
+   	 num=$(awk 'BEGIN { $rand() ; for(i=1;i<=1;i++) print int(36*rand()) int(36*rand()) int(36*rand()) int(36*rand()) int(36*rand()) int(11*rand()) }')
+   	 zenity --info --text "Numeros entrados: $num \nNumeros ganadores: $rand " --width 100 --height 100
+
+   	 if [ "$num" == "$rand" ] ; then
+   	 zenity --info --text "Felicidades!" --width 100 --height 100
+   	 fi
+   	 if [ "$num" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 used4=$(($used4 + 1 | bc))
+   	 ;;
+   	 
+    "Revancha")
+   	 sec=$(zenity --list --text="Menu" --width 220 --height 200 --radiolist --column="Escoge" --column="Opciones" TRUE "Escoger Numeros" FALSE "Automatica" )
+   	 rand=$(awk 'BEGIN {for(i=1;i<=1;i++) print int(36*rand()) int(36*rand())  int(36*rand())  int(36*rand())  int(36*rand())  int(11*rand())}')
+
+   	 if [ "$sec" == "Escoger Numeros" ] ; then
+   	 for((i=0;i<=4;i++)) ; do
+   	 bag5[$i]=$(zenity --scale --text "Escoge un numero" --min-value=1 --max-value=35 --value=1)
+   	 done
+   	 bag5[${#bag5[@]}]=$(zenity --scale --text "Escoge numero para bola roja" --min-value=1 --max-value=10 --value=1)
+   	 zenity --info --text "Numeros escogidos: ${bag5[*]} \n Numeros ganadores: $rand" --width 100 --height 100
+
+
+   	 if [ "${bag5[*]}" == "$rand" ] ; then
+   	 zenity --info --text "Congratulations!" --width --height 100
+   	 fi
+   	 
+   	 if [ "${bag5[*]}" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 if [ "$sec" == "Automatica" ] ; then
+   	 num=$(awk 'BEGIN { $rand() ; for(i=1;i<=1;i++) print int(36*rand()) int(36*rand()) int(36*rand()) int(36*rand()) int(36*rand()) int(11*rand()) }')
+   	 zenity --info --text "Numeros entrados: $num \nNumeros ganadores: $rand " --width 100 --height 100
+
+   	 if [ "$num" == "$rand" ] ; then
+   	 zenity --info --text "Felicidades!" --width 100 --height 100
+   	 fi
+   	 if [ "$num" != "$rand" ] ; then
+   	 zenity --info --text "No gano. \nIntente de nuevo." --width 100 --height 100
+   	 fi
+   	 fi
+
+   	 used5=$(($used5 + 1 | bc))
+   	 ;;
+
+    "Ver Log Files")
+   	 temp=$(cat temp) ; count=$((count+1)); echo "$count">temp | zenity --info --text "Cantidad de veces que el programa a corrido: $temp " --width 200 --height 100
+   	 zenity --info --text "Log Files" --width 100 --height 100
+   	 zenity --info --text "Pega 3 ----------------- $used1" --width 200 --height 100
+   	 zenity --info --text "Pega 4 ----------------- $used2" --width 200 --height 100
+   	 zenity --info --text "Power Ball ------------- $used3" --width 200 --height 100
+   	 zenity --info --text "Loto ------------------- $used4" --width 200 --height 100
+   	 zenity --info --text "Revancha --------------- $used5" --width 200 --height 100
+   	 ;;
+
+    "Exit")
+   	 zenity --info --text "Gracias por usar La Loteria Electronica" --width 200 --height 100 ; exit
+   	 ;;
+
+    esac
+done
